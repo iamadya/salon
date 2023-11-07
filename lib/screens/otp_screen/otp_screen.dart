@@ -22,12 +22,12 @@ class OtpScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/img2.png',
-                width: 160,
-                height: 160,
+                'assets/images/img1.png',
+                width: 300,
+                height: 300,
               ),
               SizedBox(
-                height: 25,
+                height: 30,
               ),
               Text(
                 "Verification OTP",

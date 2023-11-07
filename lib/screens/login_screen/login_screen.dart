@@ -27,18 +27,18 @@ class _LoginScreenState extends State<LoginScreen> {
               })),
       body: Container(
         margin: EdgeInsets.only(left: 25, right: 25),
-        alignment: Alignment.center,
+        // alignment: Alignment.center,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Image.asset(
-              //   'assets/images/img3.png',
-              //   width: 160,
-              //   height: 160,
-              // ),
+              Image.asset(
+                'assets/images/img1.png',
+                width: 300,
+                height: 300,
+              ),
               SizedBox(
-                height: 25,
+                height: 30,
               ),
               Text(
                 "Phone Verification",
@@ -81,51 +81,52 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
-                onPressed: () {
-                  setState(() {
-                    isLoading = true;
-                  });
-                  auth.verifyPhoneNumber(
-                    phoneNumber: phoneNumberController.text,
-                    verificationCompleted: (_) {},
-                    verificationFailed: (FirebaseAuthException e) {
-                      setState(() {
-                        isLoading = false;
-                      });
-                      if (e.code == 'invalid-phone-number') {
-                        print('The provided phone number is not valid.');
-                      }
-                    },
-                    codeSent: (String verificationId, int? token) {
-                      setState(() {
-                        isLoading = true;
-                      });
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  OtpScreen(verificationId: verificationId)));
-                    },
-                    codeAutoRetrievalTimeout: (String verificationId) {
-                      // Auto-resolution timed out...
-                    },
-                  );
-                  print('code has been sent!');
-                },
-                child: isLoading
-                    ? SizedBox(
-                        child: CircularProgressIndicator(),
-                        height: 20,
-                        width: 20,
-                      )
-                    : Text("Send code"),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.6,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      backgroundColor: Colors.blueAccent,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
+                  onPressed: () {
+                    setState(() {
+                      isLoading = true;
+                    });
+                    auth.verifyPhoneNumber(
+                      phoneNumber: phoneNumberController.text,
+                      verificationCompleted: (_) {},
+                      verificationFailed: (FirebaseAuthException e) {
+                        setState(() {
+                          isLoading = false;
+                        });
+                        if (e.code == 'invalid-phone-number') {
+                          print('The provided phone number is not valid.');
+                        }
+                      },
+                      codeSent: (String verificationId, int? token) {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    OtpScreen(verificationId: verificationId)));
+                      },
+                      codeAutoRetrievalTimeout: (String verificationId) {},
+                    );
+                    print('code has been sent!');
+                  },
+                  child: isLoading
+                      ? CircularProgressIndicator()
+                      : Text("Send code",
+                          style: TextStyle(
+                            color: Colors.white,
+                          )),
+                ),
               ),
             ],
           ),
