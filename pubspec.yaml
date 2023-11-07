@@ -38,6 +38,8 @@ dependencies:
   firebase_core: ^2.21.0
   cloud_firestore: ^4.12.2
   firebase_auth: ^4.12.1
+  flutter_otp_text_field: ^1.1.1
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
