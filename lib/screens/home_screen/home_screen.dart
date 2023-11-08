@@ -19,12 +19,39 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Good Morning'),
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Good Morning',
+              style: TextStyle(
+                fontSize: 14,
+                fontFamily: 'Ubuntu',
+                fontWeight: FontWeight.w400,
+                color: Colors.grey[600],
+              ),
+            ),
+            Text(
+              'Sushma Shukla',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Hindi',
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+        leading: Padding(
+          padding: const EdgeInsets.all(5),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(
+                50), // Adjust the radius to set the amount of rounding
+            child: Image.network(
+              'https://images.pexels.com/photos/5794945/pexels-photo-5794945.jpeg?auto=compress&cs=tinysrgb&w=600',
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.notifications_none_rounded),
@@ -75,13 +102,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 20),
                 SwipingImageGallery(),
-                SizedBox(height: 20),
+                SizedBox(height: 30),
 
                 // Featured Services
                 Container(
                   alignment: Alignment.topLeft,
-                  child: Text('Featured Services',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text(
+                    'Featured Services',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Hindi',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 SizedBox(height: 20),
 
@@ -92,8 +125,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Category',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(
+                      'Category',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Hindi',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     TextButton(
                         onPressed: () {},
                         child: Text(
@@ -112,8 +151,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 // Most Popular Services Section
                 Container(
                   alignment: Alignment.topLeft,
-                  child: Text('Most Popular Services',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text(
+                    'Most Popular Services',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Hindi',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
 
                 // FilledButton(
