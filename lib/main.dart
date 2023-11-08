@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:salon/screens/home_screen/home_screen.dart';
 import 'package:salon/screens/login_screen/login_screen.dart';
-import 'package:salon/screens/login_screen/profile_screen/profile_screen.dart';
 import 'package:salon/screens/otp_screen/otp_screen.dart';
 import 'firebase_options.dart';
 
@@ -12,15 +12,16 @@ void main() async {
   );
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/login_screen',
+    // initialRoute: '/login_screen',
     routes: {
       // '/': (context) => LoginScreen(),
+      '/': (context) => HomeScreen(),
 
       '/login_screen': (context) => LoginScreen(),
       '/otp_screen': (context) => OtpScreen(
             verificationId: '',
           ),
-      '/profile_screen': (context) => ProfileScreen(),
+      '/profile_screen': (context) => HomeScreen(),
     },
   ));
 }
