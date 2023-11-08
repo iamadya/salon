@@ -10,6 +10,9 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int _currentIndex = 0;
 
+  Color _selectedIconColor = Color(0xFF024163);
+  Color _unselectedIconColor = Colors.grey[700]!;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -22,31 +25,25 @@ class _NavBarState extends State<NavBar> {
               _currentIndex = index;
             });
           },
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: ColorFiltered(
-                colorFilter: ColorFilter.mode(
-                  Color(0xFF024163), // Change color here
-                  BlendMode.srcIn,
-                ),
-                child: Icon(Icons.home),
-              ),
+              icon: Icon(Icons.home, color: _currentIndex == 0 ? _selectedIconColor : _unselectedIconColor),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.grid_view),
+              icon: Icon(Icons.grid_view, color: _currentIndex == 1 ? _selectedIconColor : _unselectedIconColor),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month),
+              icon: Icon(Icons.calendar_month, color: _currentIndex == 2 ? _selectedIconColor : _unselectedIconColor),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.message),
+              icon: Icon(Icons.message, color: _currentIndex == 3 ? _selectedIconColor : _unselectedIconColor),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_outlined),
+              icon: Icon(Icons.person_2_outlined, color: _currentIndex == 4 ? _selectedIconColor : _unselectedIconColor),
               label: '',
             ),
           ],
@@ -57,11 +54,12 @@ class _NavBarState extends State<NavBar> {
               MediaQuery.of(context).size.width / 5 * 0.2,
           child: Container(
             width: MediaQuery.of(context).size.width / 5 * 0.6,
-            height: 3,
-            color: Color(0xFF024163),
+            height: 2,
+            color: _selectedIconColor, // Change the color of the indicator here
           ),
         ),
       ],
     );
   }
 }
+
