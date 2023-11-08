@@ -61,17 +61,11 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 200,
-                child: SwipingImageGallery(),
-              ),
-            )
+            SizedBox(height: 10),
+            SwipingImageGallery()
           ],
         ),
       ),
     );
   }
 }
-

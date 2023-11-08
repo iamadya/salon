@@ -25,12 +25,12 @@ class _SwipingImageGalleryState extends State<SwipingImageGallery> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 200,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
           PageView.builder(
-            controller: _pageController, // Provide the PageController
+            controller: _pageController,
             itemCount: images.length,
             onPageChanged: (index) {
               setState(() {
@@ -38,13 +38,22 @@ class _SwipingImageGalleryState extends State<SwipingImageGallery> {
               });
             },
             itemBuilder: (context, index) {
-              return Image.network(images[index], fit: BoxFit.cover);
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(12.0),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: Image.network(images[index], fit: BoxFit.cover),
+                ),
+              );
             },
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10),
             child: SmoothPageIndicator(
-              controller: _pageController, // Use the same PageController
+              controller: _pageController,
               count: images.length,
               effect: ExpandingDotsEffect(
                 dotWidth: 8.0,
