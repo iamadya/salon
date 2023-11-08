@@ -4,6 +4,7 @@ import 'package:salon/components/my_card_horizontal.dart';
 import '../../components/category_card.dart';
 import '../../components/image_slider.dart';
 import '../../components/my_card_vertical.dart';
+import '../../components/nav_bar.dart';
 import '../../components/tag_search.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -115,32 +116,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
 
-                FilledButton(
-                    onPressed: () {},
-                    child: Text('All'),
-                    style: ButtonStyle(
+                // FilledButton(
+                //     onPressed: () {},
+                //     child: Text('All'),
+                //     style: ButtonStyle(
+                //         foregroundColor:
+                //             MaterialStateProperty.all<Color>(Colors.white),
+                //         backgroundColor:
+                //             MaterialStateProperty.all<Color>(Colors.blue[900]!),
+                //         shape:
+                //             MaterialStateProperty.all<RoundedRectangleBorder>(
+                //                 RoundedRectangleBorder(
+                //                     borderRadius: BorderRadius.circular(20),
+                //                     side: BorderSide(color: Colors.blue))))),
 
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue[900]!),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    side: BorderSide(color: Colors.blue)
-                                )))),
 
-                // TagSearch()
+
+                TagSearch(),
+
                 MyCardVertical(),
                 MyCardVertical(),
                 MyCardVertical(),
-                SizedBox(height: 200)
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: NavBar(),
     );
   }
 }
