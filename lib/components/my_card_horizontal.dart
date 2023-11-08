@@ -62,6 +62,9 @@ class _MyCardHorizontalState extends State<MyCardHorizontal> {
                                 color: Colors.black,
                               ),
                             ),
+                            WidgetSpan(
+                              child: SizedBox(width: 5), // Adjust the width for desired space
+                            ),
                             TextSpan(
                               text: 'Rs 300',
                               style: TextStyle(

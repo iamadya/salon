@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 
 class MyCardVertical extends StatelessWidget {
+  final String salonName;
+  final String location;
+  final String imageUrl;
+  final String distance;
+  final String rating;
+  final bool
+      showBookmarkIcon; // Property to control the visibility of the bookmark icon
+
+  MyCardVertical({
+    required this.salonName,
+    required this.location,
+    required this.imageUrl,
+    required this.distance,
+    required this.rating,
+    required this.showBookmarkIcon,
+    // Include the property in the constructor
+  });
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,7 +38,7 @@ class MyCardVertical extends StatelessWidget {
                 width: 110,
                 height: 120,
                 child: Image.network(
-                  'https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                  imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -34,20 +52,21 @@ class MyCardVertical extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        'Tanishk Unisex Salon',
+                        salonName,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
                         ),
                       ),
-                      Icon(
-                        Icons.bookmark_added,
-                        color: Colors.red,
-                      ),
+                      if (showBookmarkIcon) // Conditionally show the bookmark icon
+                        Icon(
+                          Icons.bookmark_added,
+                          color: Colors.red,
+                        ),
                     ],
                   ),
                   Text(
-                    'Janakpuri, New Delhi',
+                    location,
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
@@ -58,10 +77,10 @@ class MyCardVertical extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.location_on_rounded,
-                        color: Colors.blueAccent,
+                        color: Color(0xFF024163),
                       ),
                       Text(
-                        '1.2km',
+                        distance,
                         style: TextStyle(
                           color: Colors.grey[700],
                           letterSpacing: 0.1,
@@ -79,9 +98,10 @@ class MyCardVertical extends StatelessWidget {
                       ),
                       SizedBox(width: 5),
                       Text(
-                        '4.8 | 256 Reviews',
+                        rating,
                         style: TextStyle(
                           color: Colors.grey[700],
+                          fontSize: 12,
                         ),
                       ),
                     ],
@@ -95,4 +115,3 @@ class MyCardVertical extends StatelessWidget {
     );
   }
 }
-

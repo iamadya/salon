@@ -24,7 +24,13 @@ class _NavBarState extends State<NavBar> {
           },
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: ColorFiltered(
+                colorFilter: ColorFilter.mode(
+                  Color(0xFF024163), // Change color here
+                  BlendMode.srcIn,
+                ),
+                child: Icon(Icons.home),
+              ),
               label: '',
             ),
             BottomNavigationBarItem(
@@ -52,7 +58,7 @@ class _NavBarState extends State<NavBar> {
           child: Container(
             width: MediaQuery.of(context).size.width / 5 * 0.6,
             height: 3,
-            color: Colors.blue,
+            color: Color(0xFF024163),
           ),
         ),
       ],

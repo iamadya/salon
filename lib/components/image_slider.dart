@@ -59,7 +59,7 @@ class _SwipingImageGalleryState extends State<SwipingImageGallery> {
                 dotWidth: 8.0,
                 dotHeight: 8.0,
                 dotColor: Colors.white,
-                activeDotColor: Colors.blueAccent,
+                activeDotColor: Color(0xFF0577ab),
               ),
             ),
           ),

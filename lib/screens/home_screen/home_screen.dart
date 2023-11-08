@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 20),
 
                 MyCardHorizontal(),
-                SizedBox(height: 40),
+                SizedBox(height: 20),
 
                 // Category Section
                 Row(
@@ -129,14 +129,37 @@ class _HomeScreenState extends State<HomeScreen> {
                 //                 RoundedRectangleBorder(
                 //                     borderRadius: BorderRadius.circular(20),
                 //                     side: BorderSide(color: Colors.blue))))),
-
-
+                SizedBox(height: 20),
 
                 TagSearch(),
 
-                MyCardVertical(),
-                MyCardVertical(),
-                MyCardVertical(),
+                MyCardVertical(
+                  salonName: 'Tanishk Unisex Salon',
+                  location: 'Janakpuri, New Delhi',
+                  imageUrl:
+                      'https://images.pexels.com/photos/11333875/pexels-photo-11333875.jpeg?auto=compress&cs=tinysrgb&w=600',
+                  distance: '1.2km',
+                  rating: '4.8 | 256 Reviews',
+                  showBookmarkIcon: true,
+                ),
+                MyCardVertical(
+                  salonName: 'Royal Touch Salon Studio',
+                  location: 'Tilak Nagar, New Delhi',
+                  imageUrl:
+                      'https://media.istockphoto.com/id/1497806504/photo/hair-styling-in-beauty-salon-woman-does-her-hair-in-modern-beauty-salon-woman-stylist-dries.jpg?b=1&s=612x612&w=0&k=20&c=C3dJVYJDDYX5W1x9rei5Zzkd8uQ8-Q-6xUmWrhDoMW8=',
+                  distance: '800m',
+                  rating: '4.4 | 154 Reviews',
+                  showBookmarkIcon: false,
+                ),
+                MyCardVertical(
+                  salonName: 'Hair Direction Salon',
+                  location: 'Tilak Nagar, New Delhi',
+                  imageUrl:
+                      'https://images.pexels.com/photos/5584461/pexels-photo-5584461.jpeg?auto=compress&cs=tinysrgb&w=600',
+                  distance: '900m',
+                  rating: '4.6 | 154 Reviews',
+                  showBookmarkIcon: false,
+                ),
               ],
             ),
           ),

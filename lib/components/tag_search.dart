@@ -10,7 +10,14 @@ class TagSearch extends StatefulWidget {
 class _TagSearchState extends State<TagSearch> {
   int _selectedIndex = 0; // Defaulting to 0 (All)
 
-  final List<String> buttonLabels = ['All', 'Haircuts', 'Make up', 'Manicure', 'Spa'];
+  final List<String> buttonLabels = [
+    'All',
+    'Haircuts',
+    'Make up',
+    'Manicure',
+    'Pedicure',
+    'Massage',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,25 +25,32 @@ class _TagSearchState extends State<TagSearch> {
       height: 50, // Adjust the height as needed
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
+        itemCount: buttonLabels.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TagButton(
-              onPressed: () {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-              child: Text(buttonLabels[index]), // Use label from the list
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(
-                  _selectedIndex == index ? Colors.blue[900]! : Colors.blue.withAlpha(50),
-                ),
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+            child: SizedBox(
+              width: index == 0 ? 60 : 100, // Decreased width for 'All' button
+              child: TagButton(
+                onPressed: () {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
+                child: Text(buttonLabels[index]),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    _selectedIndex == index
+                        ? Color(0xFF024163)
+                        : Color(0xFFe9f7fe),
+                  ),
+                  foregroundColor: MaterialStateProperty.all<Color>(
+                    _selectedIndex == index ? Colors.white : Color(0xFF4d7c96),
+                  ),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
               ),
