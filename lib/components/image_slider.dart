@@ -25,10 +25,10 @@ class _SwipingImageGalleryState extends State<SwipingImageGallery> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 180,
       child: Stack(
         alignment: Alignment.bottomCenter,
-        children: [
+        children: <Widget> [
           PageView.builder(
             controller: _pageController,
             itemCount: images.length,
