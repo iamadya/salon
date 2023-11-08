@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:salon/components/my_card.dart';
+import 'package:salon/components/my_card_horizontal.dart';
 
 import '../../components/category_card.dart';
 import '../../components/image_slider.dart';
+import '../../components/my_card_vertical.dart';
+import '../../components/tag_search.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
-                    children: [
+                    children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
@@ -65,20 +72,27 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 20),
                 SwipingImageGallery(),
                 SizedBox(height: 20),
 
                 // Featured Services
-                Text('Featured Services'),
-                MyCard(),
-                SizedBox(height: 30),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Text('Featured Services',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                SizedBox(height: 20),
+
+                MyCardHorizontal(),
+                SizedBox(height: 40),
 
                 // Category Section
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Category'),
+                  children: <Widget>[
+                    Text('Category',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                     TextButton(
                         onPressed: () {},
                         child: Text(
@@ -92,6 +106,36 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 CategoryCard(),
+                SizedBox(height: 40),
+
+                // Most Popular Services Section
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Text('Most Popular Services',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+
+                FilledButton(
+                    onPressed: () {},
+                    child: Text('All'),
+                    style: ButtonStyle(
+
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue[900]!),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                    side: BorderSide(color: Colors.blue)
+                                )))),
+
+                // TagSearch()
+                MyCardVertical(),
+                MyCardVertical(),
+                MyCardVertical(),
+                SizedBox(height: 200)
               ],
             ),
           ),

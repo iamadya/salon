@@ -24,24 +24,34 @@ class CategoryCard extends StatelessWidget {
         ),
         itemCount: categoryData.length,
         itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[100],
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                padding: EdgeInsets.all(20.0),
-                child: ClipRRect(
-                  child: Image.asset(
-                    categoryData[index]['icon'],
-                    width: 40,
-                    height: 40,
+          return Container(
+            padding: EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  padding: EdgeInsets.all(12.0),
+                  child: ClipRRect(
+                    child: Image.asset(
+                      categoryData[index]['icon'],
+                      width: 50,
+                      height: 50,
+                    ),
                   ),
                 ),
-              ),
-              Text(categoryData[index]['title']),
-            ],
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      categoryData[index]['title'],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),
