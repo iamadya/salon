@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-  CategoryCard({Key? key});
+  final List<Map<String, dynamic>> categoryData;
 
-  final List<Map<String, dynamic>> categoryData = [
-    {'icon': 'assets/icons/haircut.png', 'title': 'Hair cut'},
-    {'icon': 'assets/icons/makeup.png', 'title': 'Makeup'},
-    {'icon': 'assets/icons/hair_straightener.png', 'title': 'Straightening'},
-    {'icon': 'assets/icons/nail.png', 'title': 'Meni-Pedi'},
-    {'icon': 'assets/icons/massage.png', 'title': 'Spa/Massage'},
-    {'icon': 'assets/icons/beard_trimming.png', 'title': 'Beard Trimming'},
-  ];
+  CategoryCard({Key? key, required this.categoryData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

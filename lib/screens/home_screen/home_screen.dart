@@ -149,7 +149,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 SizedBox(height: 20),
-                CategoryCard(),
+                CategoryCard(
+                  categoryData: [
+                    {'icon': 'assets/icons/haircut.png', 'title': 'Hair cut'},
+                    {'icon': 'assets/icons/makeup.png', 'title': 'Makeup'},
+                    {'icon': 'assets/icons/hair_straightener.png', 'title': 'Straightening'},
+                    {'icon': 'assets/icons/nail.png', 'title': 'Meni-Pedi'},
+                    {'icon': 'assets/icons/massage.png', 'title': 'Spa/Massage'},
+                    {'icon': 'assets/icons/beard_trimming.png', 'title': 'Bear Trimming'},
+                  ],
+                ),
                 SizedBox(height: 40),
 
                 // Most Popular Services Section

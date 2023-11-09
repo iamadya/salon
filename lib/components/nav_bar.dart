@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:salon/screens/home_screen/home_screen.dart';
+
+import '../screens/category_screen/category_screen.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -23,6 +26,18 @@ class _NavBarState extends State<NavBar> {
           onTap: (index) {
             setState(() {
               _currentIndex = index;
+              if (_currentIndex == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CategoryScreen()),
+                );
+              }
+              else{
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              }
             });
           },
           items: <BottomNavigationBarItem>[
