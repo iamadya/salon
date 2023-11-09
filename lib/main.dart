@@ -20,13 +20,14 @@ void main() async {
     // initialRoute: '/login_screen',
     routes: {
       '/': (context) => LoginScreen(),
+      // '/': (context) => OtpScreen(verificationId: '',),
       // '/': (context) => HomeScreen(),
 
       '/login_screen': (context) => LoginScreen(),
       '/otp_screen': (context) => OtpScreen(
             verificationId: '',
           ),
-      '/profile_screen': (context) => HomeScreen(),
+      '/home_screen': (context) => HomeScreen(),
     },
   ));
 }

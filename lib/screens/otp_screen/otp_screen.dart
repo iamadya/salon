@@ -1,9 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key, required String verificationId});
+  const OtpScreen({Key? key, required String verificationId});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,18 @@ class OtpScreen extends StatelessWidget {
               icon: Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.of(context).pop();
-              })),
+              }),
+          actions: [
+            TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Skip',
+                  style: TextStyle(
+                    color: Colors.red,
+                    // decoration: TextDecoration.underline,
+                  ),
+                ))
+          ]),
       body: Container(
         margin: EdgeInsets.only(left: 25, right: 25),
         alignment: Alignment.center,
@@ -23,53 +35,122 @@ class OtpScreen extends StatelessWidget {
             children: [
               Image.asset(
                 'assets/images/img1.png',
-                width: 300,
-                height: 300,
+                width: 280,
+                height: 280,
               ),
               SizedBox(
-                height: 30,
+                height: 60,
               ),
-              Text(
-                "Verification OTP",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "OTP has been sent to your phone",
-                style: TextStyle(
-                  fontSize: 16,
+              Container(
+                height: 350,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  border: Border.all(
+                    color: Colors.grey[100]!, // Border color
+                    width: 1, // Border width
+                  ),
                 ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              OtpTextField(
-                numberOfFields: 6,
-                borderColor: Colors.black,
-                fieldWidth: 40,
-                borderRadius: BorderRadius.all(Radius.circular(11)),
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //set to true to show as box or false to show as dash
-                showFieldAsBox: true,
-                //runs when a code is typed in
-                onCodeChanged: (String code) {
-                  //handle validation or checks here
-                },
-                //runs when every textfield is filled
-                onSubmit: (String verificationCode) {
-                  Navigator.pushNamed(context, '/profile_screen');
-                  Fluttertoast.showToast(
-                    msg: "Sign in successfully",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                  );
-                }, // end onSubmit
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/password.png',
+                      height: 50,
+                      width: 50,
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    OtpTextField(
+                      numberOfFields: 6,
+                      borderColor: Colors.black,
+                      fieldWidth: 40,
+                      borderRadius: BorderRadius.all(Radius.circular(11)),
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      showFieldAsBox: false,
+
+                      onCodeChanged: (String code) {},
+                      //runs when every textfield is filled
+                      onSubmit: (String verificationCode) {
+                        Navigator.pushNamed(context, '/home_screen');
+                        Fluttertoast.showToast(
+                          msg: "Sign in successfully",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.green,
+                          textColor: Colors.white,
+                        );
+                      }, // end onSubmit
+                    ),
+                    SizedBox(height: 40),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 50,
+                      child: FilledButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/home_screen');
+                        },
+                        child: Text('Continue'),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Color(0xFF024163)),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: 'By continuing you are agreeing to our\n',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
+                        children: [
+                          TextSpan(
+                            text: 'Terms & Conditions',
+                            style: TextStyle(
+                              color: Color(0xFF4082a0),
+                              textBaseline: TextBaseline.alphabetic,
+                              fontSize: 13, // Adjust the font size as needed
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                // Action for 'Terms & Conditions' tap
+                              },
+                          ),
+                          TextSpan(
+                            text: ' and ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          TextSpan(
+                            text: 'Privacy Policy',
+                            style: TextStyle(
+                              color: Color(0xFF4082a0),
+                              textBaseline: TextBaseline.alphabetic,
+                              fontSize: 13, // Adjust the font size as needed
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                // Action for 'Privacy Policy' tap
+                              },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 20,
