@@ -19,9 +19,9 @@ void main() async {
     ),
     // initialRoute: '/login_screen',
     routes: {
-      '/': (context) => LoginScreen(),
+      // '/': (context) => LoginScreen(),
       // '/': (context) => OtpScreen(verificationId: '',),
-      // '/': (context) => HomeScreen(),
+      '/': (context) => HomeScreen(),
 
       '/login_screen': (context) => LoginScreen(),
       '/otp_screen': (context) => OtpScreen(

@@ -41,16 +41,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        leading: Padding(
-          padding: const EdgeInsets.all(5),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(
-                50), // Adjust the radius to set the amount of rounding
-            child: Image.network(
-              'https://images.pexels.com/photos/5794945/pexels-photo-5794945.jpeg?auto=compress&cs=tinysrgb&w=600',
-              fit: BoxFit.cover,
+        leading: Row(
+          children: [
+            SizedBox(width: 14),
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.network(
+                  'https://images.pexels.com/photos/5794945/pexels-photo-5794945.jpeg?auto=compress&cs=tinysrgb&w=600',
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
         actions: [
           IconButton(
@@ -62,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.card_giftcard),
             onPressed: () {},
           ),
+          SizedBox(width: 10),
         ],
       ),
       body: SingleChildScrollView(

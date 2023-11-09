@@ -4,19 +4,35 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends StatefulWidget {
   final String verificationId;
 
   const OtpScreen({Key? key, required this.verificationId}) : super(key: key);
 
+  @override
+  _OtpScreenState createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  String enteredOtp = '';
+  bool isLoading = false;
+
   Future<void> signInWithOTP(String smsCode, BuildContext context) async {
+    setState(() {
+      isLoading = true;
+    });
+
     try {
       PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
-        verificationId: verificationId,
+        verificationId: widget.verificationId,
         smsCode: smsCode,
       );
 
       await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
+
+      setState(() {
+        isLoading = false;
+      });
 
       // If the verification is successful, navigate to the home screen
       Navigator.pushNamed(context, '/home_screen');
@@ -30,6 +46,10 @@ class OtpScreen extends StatelessWidget {
         textColor: Colors.white,
       );
     } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+
       // Handle the case when the entered OTP is incorrect or verification fails
       Fluttertoast.showToast(
         msg: "Invalid OTP. Please try again.",
@@ -46,26 +66,8 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              // Handle 'Skip' action
-            },
-            child: Text(
-              'Skip',
-              style: TextStyle(
-                color: Colors.red,
-              ),
-            ),
-          )
-        ],
-      ),
+          // Add app bar properties as needed
+          ),
       body: Container(
         margin: EdgeInsets.only(left: 25, right: 25),
         alignment: Alignment.center,
@@ -87,8 +89,8 @@ class OtpScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
                   border: Border.all(
-                    color: Colors.grey[100]!, // Border color
-                    width: 1, // Border width
+                    color: Colors.grey[100]!,
+                    width: 1,
                   ),
                 ),
                 padding: EdgeInsets.all(10),
@@ -109,7 +111,11 @@ class OtpScreen extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(11)),
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       showFieldAsBox: false,
-                      onCodeChanged: (String code) {},
+                      onCodeChanged: (String code) {
+                        setState(() {
+                          enteredOtp = code;
+                        });
+                      },
                       onSubmit: (String verificationCode) {
                         signInWithOTP(verificationCode, context);
                       },
@@ -118,14 +124,26 @@ class OtpScreen extends StatelessWidget {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.8,
                       height: 50,
-                      child: FilledButton(
-                        onPressed: () {},
-                        child: Text('Continue'),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (!isLoading) {
+                            signInWithOTP(enteredOtp, context);
+                          }
+                        },
+                        child: isLoading
+                            ? CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              )
+                            : Text(
+                                'Continue',
+                                style: TextStyle(color: Colors.white),
+                              ),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
                               Color(0xFF024163)),
                           shape:
-                          MaterialStateProperty.all<RoundedRectangleBorder>(
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -181,9 +199,6 @@ class OtpScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              SizedBox(
-                height: 20,
               ),
             ],
           ),
