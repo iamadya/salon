@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Text(
               'Good Morning',
               style: TextStyle(
@@ -177,6 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 20),
 
                 TagSearch(),
+                SizedBox(height: 30),
 
                 MyCardVertical(
                   salonName: 'Tanishk Unisex Salon',
@@ -193,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   imageUrl:
                       'https://media.istockphoto.com/id/1497806504/photo/hair-styling-in-beauty-salon-woman-does-her-hair-in-modern-beauty-salon-woman-stylist-dries.jpg?b=1&s=612x612&w=0&k=20&c=C3dJVYJDDYX5W1x9rei5Zzkd8uQ8-Q-6xUmWrhDoMW8=',
                   distance: '800m',
-                  rating: '4.4 | 154 Reviews',
+                  rating: '4.6 | 154 Reviews',
                   showBookmarkIcon: false,
                 ),
                 MyCardVertical(

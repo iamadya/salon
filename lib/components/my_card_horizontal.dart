@@ -1,19 +1,70 @@
 import 'package:flutter/material.dart';
 
+class CardData {
+  final String imageUrl;
+  final String title;
+  final int originalPrice;
+  final int discountedPrice;
+
+  CardData({
+    required this.imageUrl,
+    required this.title,
+    required this.originalPrice,
+    required this.discountedPrice,
+  });
+}
+
 class MyCardHorizontal extends StatefulWidget {
   @override
   State<MyCardHorizontal> createState() => _MyCardHorizontalState();
 }
 
 class _MyCardHorizontalState extends State<MyCardHorizontal> {
+  List<CardData> cardList = [
+    CardData(
+      imageUrl:
+          'https://cdn.pixabay.com/photo/2018/02/22/17/16/barber-3173437_1280.jpg',
+      title: 'Beard Trimming',
+      originalPrice: 300,
+      discountedPrice: 200,
+    ),
+    CardData(
+      imageUrl:
+          'https://images.pexels.com/photos/3738338/pexels-photo-3738338.jpeg?auto=compress&cs=tinysrgb&w=600',
+      title: 'Hair Straightening',
+      originalPrice: 2100,
+      discountedPrice: 1000,
+    ),
+    CardData(
+      imageUrl:
+          'https://media.istockphoto.com/id/1296431297/photo/a-beautiful-young-woman-with-long-hair-doing-makeup-for-a-wedding-or-photo-shoot.webp?b=1&s=612x612&w=0&k=20&c=l5dy1ed2fC6KstCWHaHf90DrUzDqI9l-EASclnBz8xQ=',
+      title: 'Makeup',
+      originalPrice: 1000,
+      discountedPrice: 800,
+    ),
+    CardData(
+      imageUrl:
+          'https://cdn.pixabay.com/photo/2017/08/05/13/13/people-2583493_1280.jpg',
+      title: 'Manicure',
+      originalPrice: 2000,
+      discountedPrice: 1800,
+    ),
+    CardData(
+      imageUrl:
+          'https://cdn.pixabay.com/photo/2021/07/20/06/34/woman-6479874_1280.jpg',
+      title: 'Massage',
+      originalPrice: 2700,
+      discountedPrice: 2500,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.red,
       height: 180,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 6,
+        itemCount: cardList.length,
         itemBuilder: (context, index) {
           return Card(
             margin: EdgeInsets.all(8.0),
@@ -24,7 +75,7 @@ class _MyCardHorizontalState extends State<MyCardHorizontal> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget> [
+              children: <Widget>[
                 ClipRRect(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(12.0),
@@ -34,7 +85,7 @@ class _MyCardHorizontalState extends State<MyCardHorizontal> {
                     width: 150,
                     height: 100,
                     child: Image.network(
-                      'https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                      cardList[index].imageUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -43,19 +94,19 @@ class _MyCardHorizontalState extends State<MyCardHorizontal> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: <Widget>[
                       Text(
-                        'Beard Trimming',
+                        cardList[index].title,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                          fontSize: 13,
                         ),
                       ),
                       RichText(
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Rs 200 ',
+                              text: 'Rs ${cardList[index].discountedPrice} ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
@@ -63,10 +114,10 @@ class _MyCardHorizontalState extends State<MyCardHorizontal> {
                               ),
                             ),
                             WidgetSpan(
-                              child: SizedBox(width: 5), // Adjust the width for desired space
+                              child: SizedBox(width: 5),
                             ),
                             TextSpan(
-                              text: 'Rs 300',
+                              text: 'Rs ${cardList[index].originalPrice}',
                               style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 fontSize: 14,
@@ -87,4 +138,3 @@ class _MyCardHorizontalState extends State<MyCardHorizontal> {
     );
   }
 }
-

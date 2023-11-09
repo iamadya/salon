@@ -6,8 +6,7 @@ class MyCardVertical extends StatelessWidget {
   final String imageUrl;
   final String distance;
   final String rating;
-  final bool
-      showBookmarkIcon; // Property to control the visibility of the bookmark icon
+  final bool showBookmarkIcon;
 
   MyCardVertical({
     required this.salonName,
@@ -16,7 +15,6 @@ class MyCardVertical extends StatelessWidget {
     required this.distance,
     required this.rating,
     required this.showBookmarkIcon,
-    // Include the property in the constructor
   });
 
   @override
@@ -28,7 +26,7 @@ class MyCardVertical extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

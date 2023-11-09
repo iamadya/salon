@@ -60,6 +60,9 @@ class CategoryItem extends StatelessWidget {
             child: Center(
               child: Text(
                 title!,
+                style: TextStyle(
+                  fontSize: 12,
+                ),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),

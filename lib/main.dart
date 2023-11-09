@@ -12,6 +12,11 @@ void main() async {
   );
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      textTheme: TextTheme(
+        bodyText1: TextStyle(fontFamily: 'Ubuntu'),
+      ),
+    ),
     // initialRoute: '/login_screen',
     routes: {
       // '/': (context) => LoginScreen(),
