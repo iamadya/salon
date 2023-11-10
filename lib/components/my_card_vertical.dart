@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class MyCardVertical extends StatelessWidget {
+  final String imageUrl;
   final String salonName;
   final String location;
-  final String imageUrl;
   final String distance;
   final String rating;
   final bool showBookmarkIcon;
 
   MyCardVertical({
+    required this.imageUrl,
     required this.salonName,
     required this.location,
-    required this.imageUrl,
     required this.distance,
     required this.rating,
     required this.showBookmarkIcon,

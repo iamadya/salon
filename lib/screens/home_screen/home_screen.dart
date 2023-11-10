@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:salon/components/my_card_horizontal.dart';
 
 import '../../components/category_card.dart';
-import '../../components/image_slider.dart';
+import '../../components/carousel_slider.dart';
 import '../../components/my_card_vertical.dart';
 import '../../components/nav_bar.dart';
 import '../../components/tag_search.dart';
@@ -19,29 +19,50 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Good Morning',
-              style: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Ubuntu',
-                fontWeight: FontWeight.w400,
-                color: Colors.grey[600],
-              ),
-            ),
-            Text(
-              'Sushma Shukla',
-              style: TextStyle(
-                fontSize: 18,
-                fontFamily: 'Hindi',
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
+        title: FutureBuilder<DocumentSnapshot>(
+          future: FirebaseFirestore.instance
+              .collection('appBarData')
+              .doc('1')
+              .get(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator(); // Show a loading indicator while data is being fetched
+            }
+
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
+
+            var data = snapshot.data!.data() as Map<String, dynamic>;
+            String morningGreeting = data['morningGreeting'] ??
+                'Good Morning'; // Default value if not present
+            String name =
+                data['name'] ?? 'Sushma Shukla'; // Default value if not present
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  morningGreeting,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'Ubuntu',
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Hindi',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            );
+          },
         ),
         leading: Row(
           children: [
@@ -49,9 +70,29 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50),
-                child: Image.network(
-                  'https://images.pexels.com/photos/5794945/pexels-photo-5794945.jpeg?auto=compress&cs=tinysrgb&w=600',
-                  fit: BoxFit.contain,
+                child: FutureBuilder<DocumentSnapshot>(
+                  future: FirebaseFirestore.instance
+                      .collection('appBarData')
+                      .doc('1')
+                      .get(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator(); // Show a loading indicator while data is being fetched
+                    }
+
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+
+                    var data = snapshot.data!.data() as Map<String, dynamic>;
+                    String imageUrl =
+                        data['imageUrl'] ?? ''; // Default value if not present
+
+                    return Image.network(
+                      imageUrl,
+                      fit: BoxFit.contain,
+                    );
+                  },
                 ),
               ),
             ),
@@ -106,8 +147,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+
                 SizedBox(height: 20),
-                SwipingImageGallery(),
+                CarouselSlider(), //image slider
                 SizedBox(height: 30),
 
                 // Featured Services
@@ -151,6 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 SizedBox(height: 20),
+
+                // Category section
                 StreamBuilder(
                   stream: FirebaseFirestore.instance
                       .collection('categories')
@@ -188,50 +232,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                // FilledButton(
-                //     onPressed: () {},
-                //     child: Text('All'),
-                //     style: ButtonStyle(
-                //         foregroundColor:
-                //             MaterialStateProperty.all<Color>(Colors.white),
-                //         backgroundColor:
-                //             MaterialStateProperty.all<Color>(Colors.blue[900]!),
-                //         shape:
-                //             MaterialStateProperty.all<RoundedRectangleBorder>(
-                //                 RoundedRectangleBorder(
-                //                     borderRadius: BorderRadius.circular(20),
-                //                     side: BorderSide(color: Colors.blue))))),
                 SizedBox(height: 20),
-
                 TagSearch(),
                 SizedBox(height: 30),
 
-                MyCardVertical(
-                  salonName: 'Tanishk Unisex Salon',
-                  location: 'Janakpuri, New Delhi',
-                  imageUrl:
-                      'https://images.pexels.com/photos/11333875/pexels-photo-11333875.jpeg?auto=compress&cs=tinysrgb&w=600',
-                  distance: '1.2km',
-                  rating: '4.8 | 256 Reviews',
-                  showBookmarkIcon: true,
-                ),
-                MyCardVertical(
-                  salonName: 'Royal Touch Salon Studio',
-                  location: 'Tilak Nagar, New Delhi',
-                  imageUrl:
-                      'https://media.istockphoto.com/id/1497806504/photo/hair-styling-in-beauty-salon-woman-does-her-hair-in-modern-beauty-salon-woman-stylist-dries.jpg?b=1&s=612x612&w=0&k=20&c=C3dJVYJDDYX5W1x9rei5Zzkd8uQ8-Q-6xUmWrhDoMW8=',
-                  distance: '800m',
-                  rating: '4.6 | 154 Reviews',
-                  showBookmarkIcon: false,
-                ),
-                MyCardVertical(
-                  salonName: 'Hair Direction Salon',
-                  location: 'Tilak Nagar, New Delhi',
-                  imageUrl:
-                      'https://images.pexels.com/photos/5584461/pexels-photo-5584461.jpeg?auto=compress&cs=tinysrgb&w=600',
-                  distance: '900m',
-                  rating: '4.6 | 154 Reviews',
-                  showBookmarkIcon: false,
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('salons')
+                      .snapshots(),
+                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    }
+
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+
+                    var salonData = snapshot.data!.docs
+                        .map((doc) => doc.data() as Map<String, dynamic>)
+                        .toList();
+
+                    return Column(
+                      children: salonData.map((salons) {
+                        return MyCardVertical(
+                          salonName: salons['salonName'],
+                          location: salons['location'],
+                          imageUrl: salons['imageUrl'],
+                          distance: salons['distance'],
+                          rating: salons['rating'],
+                          showBookmarkIcon: salons['showBookmarkIcon'],
+                        );
+                      }).toList(),
+                    );
+                  },
                 ),
               ],
             ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class SwipingImageGallery extends StatefulWidget {
+class CarouselSlider extends StatefulWidget {
   @override
-  _SwipingImageGalleryState createState() => _SwipingImageGalleryState();
+  _CarouselSliderState createState() => _CarouselSliderState();
 }
 
-class _SwipingImageGalleryState extends State<SwipingImageGallery> {
+class _CarouselSliderState extends State<CarouselSlider> {
   final List<String> images = [
     'https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     'https://images.pexels.com/photos/3993314/pexels-photo-3993314.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -28,7 +28,7 @@ class _SwipingImageGalleryState extends State<SwipingImageGallery> {
       height: 180,
       child: Stack(
         alignment: Alignment.bottomCenter,
-        children: <Widget> [
+        children: <Widget>[
           PageView.builder(
             controller: _pageController,
             itemCount: images.length,
@@ -40,8 +40,7 @@ class _SwipingImageGalleryState extends State<SwipingImageGallery> {
             itemBuilder: (context, index) {
               return Container(
                 decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular(12.0),
+                  borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12.0),

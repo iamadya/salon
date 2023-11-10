@@ -20,9 +20,9 @@ void main() async {
     ),
     // initialRoute: '/login_screen',
     routes: {
-      '/': (context) => LoginScreen(),
+      // '/': (context) => LoginScreen(),
       // '/': (context) => OtpScreen(verificationId: '',),
-      // '/': (context) => HomeScreen(),
+      '/': (context) => HomeScreen(),
       // '/': (context) => CategoryScreen(),
 
       '/login_screen': (context) => LoginScreen(),
