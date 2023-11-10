@@ -66,8 +66,26 @@ class _OtpScreenState extends State<OtpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          // Add app bar properties as needed
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'Skip',
+              style: TextStyle(
+                color: Colors.red,
+                // decoration: TextDecoration.underline,
+              ),
+            ),
           ),
+        ],
+      ),
       body: Container(
         margin: EdgeInsets.only(left: 25, right: 25),
         alignment: Alignment.center,
@@ -169,10 +187,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               textBaseline: TextBaseline.alphabetic,
                               fontSize: 13,
                             ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // Action for 'Terms & Conditions' tap
-                              },
+                            recognizer: TapGestureRecognizer()..onTap = () {},
                           ),
                           TextSpan(
                             text: ' and ',
@@ -189,10 +204,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               textBaseline: TextBaseline.alphabetic,
                               fontSize: 13,
                             ),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap = () {
-                                // Action for 'Privacy Policy' tap
-                              },
+                            recognizer: TapGestureRecognizer()..onTap = () {},
                           ),
                         ],
                       ),

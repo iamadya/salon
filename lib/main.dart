@@ -18,11 +18,11 @@ void main() async {
         bodyText1: TextStyle(fontFamily: 'Ubuntu'),
       ),
     ),
-    // initialRoute: '/login_screen',
+    initialRoute: '/login_screen',
     routes: {
       // '/': (context) => LoginScreen(),
       // '/': (context) => OtpScreen(verificationId: '',),
-      '/': (context) => HomeScreen(),
+      // '/': (context) => HomeScreen(),
       // '/': (context) => CategoryScreen(),
 
       '/login_screen': (context) => LoginScreen(),

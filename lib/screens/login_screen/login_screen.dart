@@ -31,9 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         actions: [
           TextButton(
-            onPressed: () {
-              // Implement action for Skip button
-            },
+            onPressed: () {},
             child: Text(
               'Skip',
               style: TextStyle(
@@ -41,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // decoration: TextDecoration.underline,
               ),
             ),
-          )
+          ),
         ],
       ),
       body: Container(
@@ -71,10 +69,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Image.asset(
                       'assets/images/user.png',
-                      height: 40,
-                      width: 40,
+                      height: 30,
+                      width: 30,
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 40),
                     Container(
                       height: 50,
                       decoration: BoxDecoration(
