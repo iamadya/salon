@@ -32,7 +32,7 @@ class CategoryScreen extends StatelessWidget {
           return CategoryCard(categoryData: categoryData);
         },
       ),
-      bottomNavigationBar: NavBar(),
+      // bottomNavigationBar: NavBar(),
     );
   }
 }

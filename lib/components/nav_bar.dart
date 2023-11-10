@@ -26,16 +26,15 @@ class _NavBarState extends State<NavBar> {
           onTap: (index) {
             setState(() {
               _currentIndex = index;
-              if (_currentIndex == 1) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CategoryScreen()),
-                );
-              }
-              else{
+              if (_currentIndex == 0) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              } else if (_currentIndex == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CategoryScreen()),
                 );
               }
             });
