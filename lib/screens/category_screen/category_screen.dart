@@ -26,7 +26,8 @@ class CategoryScreen extends StatelessWidget {
             return CircularProgressIndicator();
           }
 
-          var categoryData = snapshot.data!.docs.map((doc) => doc.data()).toList();
+          var categoryData =
+              snapshot.data!.docs.map((doc) => doc.data()).toList();
 
           return CategoryCard(categoryData: categoryData);
         },

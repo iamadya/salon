@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:salon/components/my_card_horizontal.dart';
 
@@ -149,16 +150,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 SizedBox(height: 20),
-                CategoryCard(
-                  categoryData: [
-                    {'icon': 'assets/icons/haircut.png', 'title': 'Hair cut'},
-                    {'icon': 'assets/icons/makeup.png', 'title': 'Makeup'},
-                    {'icon': 'assets/icons/hair_straightener.png', 'title': 'Straightening'},
-                    {'icon': 'assets/icons/nail.png', 'title': 'Meni-Pedi'},
-                    {'icon': 'assets/icons/massage.png', 'title': 'Spa/Massage'},
-                    {'icon': 'assets/icons/beard_trimming.png', 'title': 'Bear Trimming'},
-                  ],
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('categories')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    }
+
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+
+                    var categoryData = snapshot.data!.docs
+                        .take(6)
+                        .map((doc) => doc.data())
+                        .toList();
+
+                    return CategoryCard(categoryData: categoryData);
+                  },
                 ),
+
                 SizedBox(height: 40),
 
                 // Most Popular Services Section
