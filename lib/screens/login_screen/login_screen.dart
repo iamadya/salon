@@ -36,7 +36,6 @@ class _LoginScreenState extends State<LoginScreen> {
               'Skip',
               style: TextStyle(
                 color: Colors.red,
-                // decoration: TextDecoration.underline,
               ),
             ),
           ),
@@ -118,9 +117,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         onPressed: () {
+                          if (phoneNumberController.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Please enter a phone number'),
+                                duration: Duration(seconds: 2),
+                              ),
+                            );
+                            return;
+                          }
+
                           setState(() {
                             isLoading = true;
                           });
+
                           auth.verifyPhoneNumber(
                             phoneNumber: phoneNumberController.text,
                             verificationCompleted: (_) {},
@@ -140,8 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      OtpScreen(verificationId: verificationId),
+                                  builder: (context) => OtpScreen(
+                                    verificationId: verificationId,
+                                  ),
                                 ),
                               );
                             },

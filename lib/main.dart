@@ -15,14 +15,14 @@ void main() async {
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       textTheme: TextTheme(
-        bodyText1: TextStyle(fontFamily: 'Ubuntu'),
+        bodyText1: TextStyle(fontFamily: 'Hindi'),
       ),
     ),
-    initialRoute: '/login_screen',
+    // initialRoute: '/login_screen',
     routes: {
       // '/': (context) => LoginScreen(),
       // '/': (context) => OtpScreen(verificationId: '',),
-      // '/': (context) => HomeScreen(),
+      '/': (context) => HomeScreen(),
       // '/': (context) => CategoryScreen(),
 
       '/login_screen': (context) => LoginScreen(),
